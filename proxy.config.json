@@ -1,0 +1,6 @@
+{
+  "app-proxy": {
+    "source": 3000,
+    "target": 4000
+  }
+}
