@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev -p 4000",
     "build": "next build",
-    "start": "next start",
+    "build:analyze": "ANALYZE=true next build",
+    "start": "next start -p 4000",
     "lint": "next lint",
     "mkcert": "mkcert localhost",
     "ssl": "local-ssl-proxy --config proxy.config.json --key localhost-key.pem --cert localhost.pem",
@@ -13,12 +14,14 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@vercel/postgres": "^0.7.2",
     "clsx": "^2.1.0",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^14.1.0",
     "@storybook/addon-essentials": "^7.6.15",
     "@storybook/addon-interactions": "^7.6.15",
     "@storybook/addon-links": "^7.6.15",

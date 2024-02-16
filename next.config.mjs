@@ -1,8 +1,15 @@
+import getBundleAnalyzer from "@next/bundle-analyzer";
+
+const withBundleAnalyzer = getBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  optimizeFonts: true,
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -13,4 +20,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);
