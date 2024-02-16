@@ -10,6 +10,7 @@ export default {
     size: "md",
     color: "primary",
     variant: "rounded",
+    disabled: false,
   },
 } satisfies Meta<typeof Button>;
 

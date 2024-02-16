@@ -14,7 +14,8 @@ export type ButtonProps = {
   HTMLButtonElement
 >;
 
-const buttonCommonStyle = "duration-200 hover:shadow-md hover:scale-[1.01]";
+const buttonCommonStyle =
+  "duration-200 [&:not(:disabled)]:hover:shadow-md [&:not(:disabled)]:hover:scale-[1.01] disabled:cursor-not-allowed";
 
 const buttonSizeStyleMap: Record<ButtonSize, string> = {
   lg: "py-4 px-12 text-lg font-bold",
@@ -24,8 +25,8 @@ const buttonSizeStyleMap: Record<ButtonSize, string> = {
 };
 
 const buttonColorStyleMap: Record<ButtonColor, string> = {
-  primary: "bg-blue-500 text-white",
-  secondary: "bg-gray-600 text-white",
+  primary: "bg-blue-500 text-white disabled:bg-blue-300",
+  secondary: "bg-gray-600 text-white disabled:bg-gray-300",
 };
 
 const buttonVariantStyleMap: Record<
