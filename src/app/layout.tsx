@@ -1,6 +1,8 @@
 import "@/styles/global.css";
 
 import clsx from "clsx";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { GOOGLE_ANALYTICS_ID } from "@/env/ga";
 import { dungGeunMoFont, notoSansKrFont } from "@/assets/fonts";
 import { Footer } from "@/components";
 
@@ -25,6 +27,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {children}
         <Footer />
       </body>
+      <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} />
     </html>
   );
 }
