@@ -7,6 +7,8 @@ https://chingoo.be
 
 친구비 링크를 만드려면 토스아이디가 있어야해요.
 
+![](./docs/assets/chingoo.be-1.png)
+
 # Tech stack
 
 | 유형      | 적용 기술                                    |
