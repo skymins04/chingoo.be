@@ -1,3 +1,9 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "tailwindCSS.experimental.classRegex": [
+    ".*[cC]lass[nN]ames?\\(\\s*[\"']([^\"']*)[\"']\\s*\\)",
+    ".*[cC]lass[nN]ame={?[\"']([^\"']*)",
+    ".*[cC]lass={?[\"']([^\"']*)",
+    ".*clsx?\\(\\s*[\"']([^\"']*)[\"']\\s*\\)"
+  ]
 }
