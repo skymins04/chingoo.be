@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import TossIDScreenImage from "@/assets/images/toss-id-1.png";
 import { FloatingBottomArea, Receipt, StrongText } from "@/components";
+import { Button } from "@/components/button";
 
 export const metadata: Metadata = {
   title: "CHINGOO.BE",
@@ -26,12 +27,12 @@ export default function MainPage() {
           <StrongText>친구비 영수증</StrongText>을 만들 수 있어요!
         </p>
 
-        <p className="origin-bottom-left animate-[fade\_in_0.4s_0.5s_ease-in-out_forwards] opacity-0">
+        <p className="origin-bottom-left animate-[fade\_in_0.4s_0.6s_ease-in-out_forwards] opacity-0">
           친구비 링크를 만들려면{" "}
           <StrongText>토스아이디가 있어야해요.</StrongText>
         </p>
 
-        <section className="relative w-full origin-bottom animate-[fade\_in_0.4s_0.6s_ease-in-out_forwards] select-none pb-20 opacity-0">
+        <section className="relative w-full origin-bottom animate-[fade\_in_0.4s_0.5s_ease-in-out_forwards] select-none pb-20 opacity-0">
           <div className="relative w-[80%]">
             <Image
               src={TossIDScreenImage.src}
@@ -59,7 +60,7 @@ export default function MainPage() {
           />
         </section>
       </main>
-      <FloatingBottomArea>
+      <FloatingBottomArea childrenAreaClassName="gap-4">
         <Link
           className="w-max"
           href="https://toss.me"
@@ -69,9 +70,9 @@ export default function MainPage() {
           내 토스아이디 <StrongText>찾기 / 만들기</StrongText>
         </Link>
         <Link href="/create" className="w-full">
-          <button className="h-16 w-full rounded-3xl bg-blue-500 text-white">
+          <Button size="lg" className="w-full">
             친구비 링크 만들기
-          </button>
+          </Button>
         </Link>
       </FloatingBottomArea>
     </>

@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <footer className="flex w-full flex-col items-start justify-start gap-2 bg-gray-800 px-6 pb-[400px] pt-4">
+    <footer className="flex w-full flex-col items-start justify-start gap-2 bg-gray-800 px-6 pb-[300px] pt-4">
       <h1 className="text-2xl font-bold">CHINGOO.BE</h1>
       <p className="text-xs">© 2024. CHINGOO.BE. All Rights Reserved.</p>
       <p className="text-xs">
