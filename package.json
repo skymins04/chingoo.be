@@ -8,8 +8,8 @@
     "build:analyze": "ANALYZE=true next build",
     "start": "next start -p 4000",
     "lint": "next lint",
-    "mkcert": "mkcert localhost",
-    "ssl": "local-ssl-proxy --config proxy.config.json --key localhost-key.pem --cert localhost.pem",
+    "mkcert": "mkcert local.chingoo.be",
+    "ssl": "local-ssl-proxy --config proxy.config.json --key local.chingoo.be-key.pem --cert local.chingoo.be.pem",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
