@@ -11,19 +11,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html
       lang="ko"
       className={clsx(
-        "h-[100vh] min-w-[360px] overflow-hidden bg-gray-950 text-white",
+        "h-[100vh] min-w-[360px] overflow-y-auto overflow-x-hidden bg-gray-950 text-white",
         notoSansKrFont.className,
         dungGeunMoFont.variable,
       )}
     >
-      <body
-        className={clsx(
-          "relative",
-          "mx-auto h-[100vh] w-full max-w-[480px]",
-          "bg-gray-800 text-gray-400",
-          "overflow-y-auto overflow-x-hidden scrollbar-none",
-        )}
-      >
+      <body className="relative mx-auto min-h-[100vh] w-full max-w-[480px] overflow-hidden bg-gray-800 text-gray-400">
         {children}
         <Footer />
       </body>
