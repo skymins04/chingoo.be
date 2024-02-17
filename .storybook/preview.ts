@@ -1,4 +1,4 @@
-import "../src/styles/global.css";
+import "../src/common/styles/global.css";
 import "./font.css";
 
 import type { Preview } from "@storybook/react";

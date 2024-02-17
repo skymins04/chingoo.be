@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import clsx from "clsx/lite";
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 export type ButtonSize = "lg" | "md" | "sm" | "xs";
@@ -15,7 +15,7 @@ export type ButtonProps = {
 >;
 
 const buttonCommonStyle =
-  "duration-200 [&:not(:disabled)]:hover:shadow-md [&:not(:disabled)]:hover:scale-[1.01] disabled:cursor-not-allowed";
+  "duration-200 [&:not(:disabled)]:hover:shadow-md [&:not(:disabled)]:hover:scale-[1.01] disabled:cursor-not-allowed active:!scale-100 select-none";
 
 const buttonSizeStyleMap: Record<ButtonSize, string> = {
   lg: "py-4 px-12 text-lg font-bold",
@@ -25,8 +25,8 @@ const buttonSizeStyleMap: Record<ButtonSize, string> = {
 };
 
 const buttonColorStyleMap: Record<ButtonColor, string> = {
-  primary: "bg-blue-500 text-white disabled:bg-blue-300",
-  secondary: "bg-gray-600 text-white disabled:bg-gray-300",
+  primary: "bg-blue-500 text-white disabled:bg-blue-300 active:bg-blue-600",
+  secondary: "bg-gray-600 text-white disabled:bg-gray-300 active:bg-gray-700",
 };
 
 const buttonVariantStyleMap: Record<

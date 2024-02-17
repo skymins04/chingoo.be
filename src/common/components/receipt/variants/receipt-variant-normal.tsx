@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import clsx from "clsx/lite";
 import { ReceiptVariantBaseProps } from ".";
 import { ReceiptBase } from "../base";
 
@@ -69,11 +69,13 @@ const PriceRow = ({
 }) => {
   return (
     <tr className="text-xs">
-      <td className="break-all p-0 pr-2 text-left align-text-top">{name}</td>
-      <td className="break-all p-0 pr-2 text-left align-text-top">
+      <td className="break-all p-0 pr-2 pt-1 text-left align-text-top leading-[1em]">
+        {name}
+      </td>
+      <td className="break-all p-0 pr-2 pt-1 text-left align-text-top leading-[1em]">
         {count.toLocaleString()}
       </td>
-      <td className="whitespace-nowrap p-0 text-right align-text-top">
+      <td className="whitespace-nowrap p-0 pt-1 text-right align-text-top leading-[1em]">
         {price.toLocaleString()}
       </td>
     </tr>
@@ -87,8 +89,10 @@ export const ReceiptVariantNormal = ({
   remitterName,
   remitterTitle,
   footerMessage,
+  dateTime,
   isShowDate,
   method,
+  id,
   isShowId,
   priceRows,
 }: ReceiptVariantBaseProps) => {
@@ -96,8 +100,6 @@ export const ReceiptVariantNormal = ({
     .filter((v) => v)
     .join(" ");
 
-  const dateTime = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`;
-  const id = Math.floor(Math.random() * (100000000 - 1) + 1);
   const totalPrice = priceRows
     .map(({ count, price }) => count * price)
     .concat(0)
@@ -105,9 +107,11 @@ export const ReceiptVariantNormal = ({
     .toLocaleString();
 
   return (
-    <ReceiptBase className={clsx("font-dung-geun-mo text-sm", className)}>
+    <ReceiptBase
+      className={clsx("font-dung-geun-mo text-sm text-black", className)}
+    >
       <div className="flex flex-col items-stretch justify-start gap-1">
-        {receiptTitle}
+        <span className="break-all">{receiptTitle}</span>
         <SeperatorDoubleDash />
         <table>
           <tbody>

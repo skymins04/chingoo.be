@@ -1,10 +1,10 @@
-import "@/styles/global.css";
+import "@/common/styles/global.css";
 
-import clsx from "clsx";
+import clsx from "clsx/lite";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { GOOGLE_ANALYTICS_ID } from "@/env/ga";
-import { dungGeunMoFont, notoSansKrFont } from "@/assets/fonts";
-import { Footer } from "@/components";
+import { GOOGLE_ANALYTICS_ID } from "@/common/env/ga";
+import { dungGeunMoFont, notoSansKrFont } from "@/common/assets/fonts";
+import { Footer } from "@/common/components";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

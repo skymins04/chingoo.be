@@ -2,11 +2,7 @@ import type { Config } from "tailwindcss";
 import tailwindScrollbar from "tailwind-scrollbar";
 
 const config: Config = {
-  content: [
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx,css}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx,css}",
-    "./src/styles/**/*.{js,ts,jsx,tsx,mdx,css}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx,css}"],
   theme: {
     extend: {
       animation: {

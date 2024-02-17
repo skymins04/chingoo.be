@@ -2,9 +2,14 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
-import TossIDScreenImage from "@/assets/images/toss-id-1.png";
-import { FloatingBottomArea, Receipt, StrongText } from "@/components";
-import { Button } from "@/components/button";
+import TossIDScreenImage from "@/common/assets/images/toss-id-1.png";
+import {
+  FloatingBottomArea,
+  Header,
+  StrongText,
+  Button,
+  ReceiptVariantNormal,
+} from "@/common/components";
 
 export const metadata: Metadata = {
   title: "CHINGOO.BE",
@@ -15,10 +20,11 @@ export default function MainPage() {
   return (
     <>
       <main className="flex flex-col items-stretch justify-start gap-6 bg-gray-900 px-6 pb-6 pt-8">
-        <header className="origin-bottom-left animate-[fade\_in_0.4s_ease-in-out_forwards] border-b-[1px] border-gray-600 pb-4 opacity-0">
-          <h1 className="text-4xl font-bold text-white">CHINGOO.BE</h1>
-          <h2 className="text-xl">가장 재밌게 친구비를 받는 방법</h2>
-        </header>
+        <Header
+          title="CHINGOO.BE"
+          description="가장 재밌게 친구비를 받는 방법"
+          className="origin-bottom-left animate-[fade\_in_0.4s_ease-in-out_forwards] opacity-0"
+        />
 
         <p className="origin-bottom-left animate-[fade\_in_0.4s_0.4s_ease-in-out_forwards] opacity-0">
           토스아이디 익명 송금에 연동되는
@@ -43,9 +49,11 @@ export default function MainPage() {
               priority
             />
           </div>
-          <Receipt
-            className="!absolute -bottom-8 -right-8 w-[250px] scale-75 text-black"
+          <ReceiptVariantNormal
+            className="!absolute -bottom-8 -right-8 w-[250px] scale-75"
             title="친구비 납부 영수증"
+            dateTime="2024. 2. 16. 오후 8:14:48"
+            id={12345678}
             receiverName="betaman"
             remitterName="김친구"
             remitterTitle="납부자"

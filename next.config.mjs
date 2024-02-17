@@ -10,6 +10,9 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  experimental: {
+    optimizePackageImports: ["@/common/components"],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
