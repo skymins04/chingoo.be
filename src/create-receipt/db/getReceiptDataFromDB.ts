@@ -1,7 +1,7 @@
 import "server-only";
-import { PrismaClient } from "@prisma/client";
 import { CreateReciptForm } from "../form";
 import { receiptValidationSchema } from "..";
+import { prisma } from "@/common/db";
 
 export const getReceiptDataFromDB = async (
   id: string,
@@ -17,7 +17,7 @@ export const getReceiptDataFromDB = async (
     is_show_date,
     is_show_id,
     price_rows,
-  } = await new PrismaClient().receipt.findUniqueOrThrow({
+  } = await prisma.receipt.findUniqueOrThrow({
     where: {
       id,
     },

@@ -1,5 +1,5 @@
 import "server-only";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/common/db";
 import { CreateReciptForm } from "../form";
 
 export const saveReceiptDataToDB = async (
@@ -17,7 +17,6 @@ export const saveReceiptDataToDB = async (
     priceRows,
   }: CreateReciptForm,
 ) => {
-  const prisma = new PrismaClient();
   const existRow = await prisma.receipt.findUnique({ where: { id } });
 
   const data = {
