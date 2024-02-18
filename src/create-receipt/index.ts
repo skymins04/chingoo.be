@@ -12,3 +12,5 @@ export const CreateReceipt = {
 };
 
 export { receiptValidationSchema };
+
+export * from "./db";

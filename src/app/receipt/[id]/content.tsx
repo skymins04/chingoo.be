@@ -11,17 +11,17 @@ import {
   Header,
   Receipt,
 } from "@/common/components";
-import { receiptValidationSchema } from "@/create-receipt";
 import toast from "react-hot-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { CreateReciptForm } from "@/create-receipt/form";
 
 export const ViewReceiptPageContent = ({
-  tossId,
-  data,
+  receiptData,
 }: {
-  tossId: string;
-  data?: any;
+  receiptData: CreateReciptForm;
 }) => {
+  const { priceRows, receiverName, tossId } = receiptData;
+
   const [isLoading, setIsLoading] = useState(false);
   const receiptEleRef = useRef<HTMLDivElement>(null);
   const {
@@ -42,18 +42,11 @@ export const ViewReceiptPageContent = ({
   });
   const remitterName = watch("remitterName");
 
-  const parsedData = receiptValidationSchema.parse({
-    tossId,
-    ...data,
-  });
-
-  const totalPrice = parsedData.priceRows
+  const totalPrice = priceRows
     .map(({ count, price }) => count * price)
     .reduce((prev, next) => prev + next);
-
-  const receiptTitle = `${parsedData.receiverName}님의 친구비 영수증`;
+  const receiptTitle = `${receiverName}님의 친구비 영수증`;
   const tossRemittanceURL = `https://toss.me/${tossId}/${totalPrice}`;
-
   const isDisabledButton = isLoading || !isValid;
 
   const handleRemittance = () => {
@@ -82,12 +75,12 @@ export const ViewReceiptPageContent = ({
     <>
       <main className="flex flex-col items-stretch justify-start gap-6 bg-gray-900 px-6 pb-6 pt-8">
         <Header
-          title={`${parsedData.receiverName}님의 친구비 영수증`}
-          description={`토스아이디: ${parsedData.tossId}`}
+          title={`${receiverName}님의 친구비 영수증`}
+          description={`토스아이디: ${tossId}`}
         />
         <div ref={receiptEleRef}>
           <Receipt
-            {...parsedData}
+            {...receiptData}
             remitterName={remitterName}
             className="mx-auto w-[220px] animate-fade-in"
             variant="normal"

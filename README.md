@@ -13,10 +13,12 @@ https://chingoo.be
 
 # Tech stack
 
-| 유형      | 적용 기술                         |
-| --------- | --------------------------------- |
-| Framework | Next.js 14.1.0 (App router)       |
-| Styling   | Tailwind CSS                      |
-| Infra     | Vercel SaaS                       |
-| Analyzer  | Google Analytics                  |
-| Etc       | Storybook, SVGR, Prettier, ESLint |
+| 유형      | 적용 기술                                |
+| --------- | ---------------------------------------- |
+| Framework | Next.js 14.1.0 (App router)              |
+| Styling   | Tailwind CSS                             |
+| DB        | PostgreSQL(Vercel Serverless PostgreSQL) |
+| ORM       | Prisma                                   |
+| Infra     | Vercel SaaS                              |
+| Analyzer  | Google Analytics                         |
+| Etc       | Storybook, SVGR, Prettier, ESLint        |

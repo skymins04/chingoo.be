@@ -2,28 +2,35 @@
 
 import { Button } from "@/common/components";
 import toast from "react-hot-toast";
-import { copyText, getEncodedStringifiedJSON } from "@/common/utils";
+import { copyText } from "@/common/utils";
 import { useCreateReceiptFormContext } from "./form";
 
-export const CreateReceiptCopyLinkButton = () => {
+export type CreateReceiptCopyLinkButtonProps = {
+  receiptId: string;
+};
+
+export const CreateReceiptCopyLinkButton = ({
+  receiptId,
+}: CreateReceiptCopyLinkButtonProps) => {
   const {
     getValues,
     formState: { isValid },
   } = useCreateReceiptFormContext();
 
-  const handleCopyLink = () => {
-    try {
-      const { tossId, ...values } = getValues();
+  const handleCopyLink = () =>
+    fetch("/create/save", {
+      method: "POST",
+      body: JSON.stringify({ id: receiptId, receiptData: getValues() }),
+    })
+      .then(() => {
+        const url = `${window.location.origin}/receipt/${receiptId}`;
+        copyText(url);
 
-      const data = getEncodedStringifiedJSON(values);
-      const url = `${window.location.origin}/receipt/${tossId}?data=${data}`;
-      copyText(url);
-
-      toast.success("클립보드에 링크가 복사됐습니다!");
-    } catch {
-      toast.error("클립보드에 링크를 복사하지 못했습니다 😭");
-    }
-  };
+        toast.success("클립보드에 링크가 복사됐습니다!");
+      })
+      .catch(() => {
+        toast.error("클립보드에 링크를 복사하지 못했습니다 😭");
+      });
 
   return (
     <Button

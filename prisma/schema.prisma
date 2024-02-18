@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model receipt {
+  id             String    @id
+  toss_id        String    @map("tossId")
+  title          String
+  receiver_name  String?   @map("receiverName")
+  remitter_name  String?   @map("remitterName")
+  remitter_title String?   @map("remitterTitle")
+  method         String?
+  footer_message String?   @map("footerMessage")
+  is_show_date   Boolean?  @map("isShowDate")
+  is_show_id     Boolean?  @map("isShowId")
+  price_rows     Json[]    @map("priceRows")
+  created_at     DateTime  @default(now()) @map("createdAt")
+  updated_at     DateTime  @default(now()) @map("updatedAt")
+  deleted_at     DateTime? @map("deletedAt")
+
+  @@map("Receipt")
+}
