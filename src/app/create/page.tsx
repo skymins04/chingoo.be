@@ -1,14 +1,14 @@
-import { Metadata } from "next";
 import Link from "next/link";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { v4 as uuidv4 } from "uuid";
+import { getMetaData } from "@/common/assets/metadata";
 import { FloatingBottomArea, Header, IconButton } from "@/common/components";
 import { CreateReceipt } from "@/create-receipt";
 
-export const metadata: Metadata = {
-  title: "CHINGOO.BE - 친구비 링크 만들기",
-  description: "가장 재밌게 친구비를 받는 방법",
-};
+export const metadata = getMetaData(
+  "CHINGOO.BE - 친구비 링크 만들기",
+  "가장 재밌게 친구비를 받는 방법",
+);
 
 export default function CreateReceiptPage() {
   const receiptId = uuidv4();

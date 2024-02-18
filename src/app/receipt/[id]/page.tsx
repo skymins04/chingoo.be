@@ -1,7 +1,7 @@
 import { Metadata } from "next";
+import { getMetaData } from "@/common/assets/metadata";
 import { getReceiptDataFromDB } from "@/create-receipt";
 import { ViewReceiptPageContent } from "./content";
-import { HOST } from "@/common/env";
 
 type ViewReceiptPageProps = {
   params: { id: string };
@@ -20,34 +20,7 @@ export async function generateMetadata({
     .toLocaleString("ko-KR");
   const title = `CHINGOO.BE - ${receiverName}님에게 친구비 ${totalPrice}원 보내기`;
   const description = "가장 재밌게 친구비를 받는 방법";
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      images: [
-        {
-          url: `${HOST}/opengraph-image.png`,
-          width: 1200,
-          height: 630,
-        },
-      ],
-      locale: "ko_KR",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [
-        {
-          url: `${HOST}/opengraph-image.png`,
-          width: 1200,
-          height: 630,
-        },
-      ],
-    },
-  };
+  return getMetaData(title, description);
 }
 
 export default async function ViewReceiptPage({

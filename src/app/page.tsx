@@ -1,8 +1,8 @@
 import TossIDScreenImage from "@/common/assets/images/toss-id-1.png";
 
-import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { getMetaData } from "@/common/assets/metadata";
 import {
   FloatingBottomArea,
   Header,
@@ -11,10 +11,10 @@ import {
   ReceiptVariantNormal,
 } from "@/common/components";
 
-export const metadata: Metadata = {
-  title: "CHINGOO.BE",
-  description: "가장 재밌게 친구비를 받는 방법",
-};
+export const metadata = getMetaData(
+  "CHINGOO.BE",
+  "가장 재밌게 친구비를 받는 방법",
+);
 
 export default function MainPage() {
   return (

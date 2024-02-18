@@ -1,11 +1,11 @@
 "use client";
 
-import { Metadata } from "next";
+import { getMetaData } from "@/common/assets/metadata";
 
-export const metadata: Metadata = {
-  title: "CHINGOO.BE",
-  description: "가장 재밌게 친구비를 받는 방법",
-};
+export const metadata = getMetaData(
+  "CHINGOO.BE",
+  "가장 재밌게 친구비를 받는 방법",
+);
 
 export default function ViewReceiptErrorPage() {
   return (
