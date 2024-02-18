@@ -6,7 +6,9 @@ export const Footer = () => {
   return (
     <footer className="flex w-full flex-col items-start justify-start gap-2 bg-gray-800 px-6 pb-[300px] pt-4">
       <div className="flex w-full items-start justify-between">
-        <h1 className="text-2xl font-bold">CHINGOO.BE</h1>
+        <Link href="/">
+          <h1 className="text-2xl font-bold">CHINGOO.BE</h1>
+        </Link>
         <div className="flex flex-col items-end justify-start gap-2">
           <Link
             href="https://chingoo.be/receipt/058cc73a-da22-43b0-93b4-3c5ffc62c747"
