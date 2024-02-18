@@ -12,7 +12,7 @@ export async function generateMetadata({
   params: { tossId },
   searchParams: { data },
 }: ViewReceiptPageProps): Promise<Metadata> {
-  const receiptData = getDecodedStringifiedJSON(data) ?? {};
+  const receiptData = getDecodedStringifiedJSON(data ?? "") ?? {};
 
   const parsedData = receiptValidationSchema.safeParse({
     tossId,
@@ -45,6 +45,6 @@ export default function ViewReceiptPage({
   params: { tossId },
   searchParams: { data },
 }: ViewReceiptPageProps) {
-  const receiptData = getDecodedStringifiedJSON(data) ?? {};
+  const receiptData = getDecodedStringifiedJSON(data ?? "") ?? {};
   return <ViewReceiptPageContent tossId={tossId} data={receiptData} />;
 }

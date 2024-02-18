@@ -1,4 +1,9 @@
 import { safeJSONParse } from ".";
 
-export const getDecodedStringifiedJSON = (json: any) =>
-  safeJSONParse(decodeURIComponent(atob(json)));
+export const getDecodedStringifiedJSON = (str: string) => {
+  try {
+    return safeJSONParse(decodeURIComponent(atob(str)));
+  } catch {
+    return undefined;
+  }
+};
