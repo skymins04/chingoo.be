@@ -42,8 +42,8 @@ export const useCreateReceiptForm = () =>
     resolver: zodResolver(receiptValidationSchema),
     defaultValues: {
       title: "친구비 영수증",
-      receiverName: "홍길동",
-      remitterName: "홍길동",
+      receiverName: "",
+      remitterName: "김친구",
       remitterTitle: "납부자",
       method: "일시납부",
       footerMessage: "친구비 환불 절대 불가",

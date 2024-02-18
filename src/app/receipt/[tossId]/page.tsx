@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toPng } from "html-to-image";
 import { getDecodedStringifiedJSON } from "@/common/utils";
@@ -12,6 +12,9 @@ import {
   Receipt,
 } from "@/common/components";
 import { receiptValidationSchema } from "@/create-receipt";
+import toast from "react-hot-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
 export default function ViewReceiptPage({
   params: { tossId },
@@ -20,13 +23,24 @@ export default function ViewReceiptPage({
   params: { tossId: string };
   searchParams: { data?: string };
 }) {
-  const { control, watch } = useForm<{ remitterName: string }>({
+  const [isLoading, setIsLoading] = useState(false);
+  const receiptEleRef = useRef<HTMLDivElement>(null);
+  const {
+    control,
+    watch,
+    trigger,
+    formState: { isValid },
+  } = useForm<{ remitterName: string }>({
     mode: "all",
+    resolver: zodResolver(
+      z.object({
+        remitterName: z.string().min(1, "이름을 입력해주세요."),
+      }),
+    ),
     defaultValues: {
-      remitterName: "홍길동",
+      remitterName: "",
     },
   });
-  const receiptEleRef = useRef<HTMLDivElement>(null);
   const remitterName = watch("remitterName");
 
   const receiptData = getDecodedStringifiedJSON(data) ?? {};
@@ -43,18 +57,29 @@ export default function ViewReceiptPage({
   const receiptTitle = `${parsedData.receiverName}님의 친구비 영수증`;
   const tossRemittanceURL = `https://toss.me/${tossId}/${totalPrice}`;
 
+  const isDisabledButton = isLoading || !isValid;
+
   const handleRemittance = () => {
     if (receiptEleRef.current) {
-      toPng(receiptEleRef.current, { cacheBust: false }).then((dataURL) => {
-        const downloadImageEle = document.createElement("a");
-        downloadImageEle.download = `${receiptTitle}.png`;
-        downloadImageEle.href = dataURL;
-        downloadImageEle.click();
-        downloadImageEle.remove();
-        window.open(tossRemittanceURL, "_blank");
-      });
+      setIsLoading(true);
+      toPng(receiptEleRef.current, { cacheBust: false })
+        .then((dataURL) => {
+          const downloadImageEle = document.createElement("a");
+          downloadImageEle.download = `${receiptTitle}.png`;
+          downloadImageEle.href = dataURL;
+          downloadImageEle.click();
+          downloadImageEle.remove();
+        })
+        .then(() => toast.success("영수증 이미지가 다운로드 되었어요!"))
+        .then(() => setIsLoading(false))
+        .then(() => window.open(tossRemittanceURL, "_blank"));
     }
   };
+
+  useEffect(function initViewReceipt() {
+    trigger();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -74,12 +99,28 @@ export default function ViewReceiptPage({
         <Controller
           control={control}
           name="remitterName"
-          render={({ field }) => <FormTextInput {...field} label="내 이름" />}
+          render={({ field, fieldState: { error } }) => (
+            <FormTextInput
+              {...field}
+              isRequired
+              status={error && "error"}
+              helpMessage={error?.message}
+              label="내 이름"
+            />
+          )}
         />
       </main>
       <FloatingBottomArea>
-        <Button size="lg" className="w-full" onClick={handleRemittance}>
-          {totalPrice.toLocaleString()} 친구비 보내기
+        <Button
+          size="lg"
+          className="w-full"
+          onClick={handleRemittance}
+          disabled={isDisabledButton}
+          color={isDisabledButton ? "secondary" : "primary"}
+        >
+          {isLoading
+            ? "영수증 이미지 저장 중..."
+            : `${totalPrice.toLocaleString()} 친구비 보내기`}
         </Button>
       </FloatingBottomArea>
     </>
