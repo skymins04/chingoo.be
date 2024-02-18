@@ -14,6 +14,7 @@ import {
 import toast from "react-hot-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateReciptForm } from "@/create-receipt/form";
+import Link from "next/link";
 
 export const ViewReceiptPageContent = ({
   receiptData,
@@ -100,7 +101,13 @@ export const ViewReceiptPageContent = ({
           )}
         />
       </main>
-      <FloatingBottomArea>
+      <FloatingBottomArea childrenAreaClassName="gap-4">
+        <Link
+          href="/create"
+          className="animate-pulse font-bold text-white underline"
+        >
+          나도 친구비 링크 만들어보기
+        </Link>
         <Button
           size="lg"
           className="w-full"

@@ -14,7 +14,7 @@ export const FloatingBottomArea = ({
   return (
     <div
       className={clsx(
-        "fixed bottom-0 left-[50%] w-full max-w-[480px] -translate-x-[50%] overflow-hidden pt-[40px]",
+        "fixed bottom-0 left-[50%] z-50 w-full max-w-[480px] -translate-x-[50%] overflow-hidden pt-[40px]",
         className,
       )}
     >
