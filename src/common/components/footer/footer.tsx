@@ -20,12 +20,22 @@ export const Footer = () => {
             </Button>
           </Link>
           <Link
+            href="https://forms.gle/3PEffrAWyfKxycbP8"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <Button size="sm" color="secondary" className="font-bold">
+              버그/불편사항 제보하기
+            </Button>
+          </Link>
+          <Link
             href="https://github.com/skymins04/chingoo.be"
             target="_blank"
             rel="noreferrer noopener"
           >
             <Button
               size="sm"
+              color="secondary"
               className="flex items-center justify-between gap-1 font-bold"
             >
               <IconBrandGithubFilled className="h-4 w-4" />
