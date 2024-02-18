@@ -74,10 +74,10 @@ const PriceRow = ({
         {name}
       </td>
       <td className="break-all p-0 pr-2 pt-1 text-left align-text-top leading-[1em]">
-        {count.toLocaleString()}
+        {count.toLocaleString("ko-KR")}
       </td>
       <td className="whitespace-nowrap p-0 pt-1 text-right align-text-top leading-[1em]">
-        {price.toLocaleString()}
+        {price.toLocaleString("ko-KR")}
       </td>
     </tr>
   );
@@ -108,7 +108,7 @@ const _ReceiptVariantNormal = (
     .map(({ count, price }) => count * price)
     .concat(0)
     .reduce((prev, next) => prev + next)
-    .toLocaleString();
+    .toLocaleString("ko-KR");
 
   const isShowReceiverSection = receiverName;
   const isShowRemitterSection =

@@ -70,6 +70,18 @@ export const CreateReceiptInput = () => {
           )}
         />
       </div>
+      <Controller
+        name="footerMessage"
+        control={control}
+        render={({ field }) => (
+          <FormTextInput
+            {...field}
+            autoComplete="off"
+            label="영수증 하단 메시지"
+            wrapperClassName="flex-1"
+          />
+        )}
+      />
       <ReceiptItemList />
     </>
   );
