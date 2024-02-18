@@ -1,3 +1,4 @@
+import { ForwardedRef, forwardRef } from "react";
 import clsx from "clsx/lite";
 import { ReceiptVariantBaseProps } from ".";
 import { ReceiptBase } from "../base";
@@ -82,20 +83,23 @@ const PriceRow = ({
   );
 };
 
-export const ReceiptVariantNormal = ({
-  className,
-  receiverName,
-  title,
-  remitterName,
-  remitterTitle,
-  footerMessage,
-  dateTime,
-  isShowDate,
-  method,
-  id,
-  isShowId,
-  priceRows,
-}: ReceiptVariantBaseProps) => {
+const _ReceiptVariantNormal = (
+  {
+    className,
+    receiverName,
+    title,
+    remitterName,
+    remitterTitle,
+    footerMessage,
+    dateTime,
+    isShowDate,
+    method,
+    id,
+    isShowId,
+    priceRows,
+  }: ReceiptVariantBaseProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) => {
   const receiptTitle = [title, remitterTitle && `(${remitterTitle}용)`]
     .filter((v) => v)
     .join(" ");
@@ -106,28 +110,43 @@ export const ReceiptVariantNormal = ({
     .reduce((prev, next) => prev + next)
     .toLocaleString();
 
+  const isShowReceiverSection = receiverName;
+  const isShowRemitterSection =
+    remitterName || (isShowDate && dateTime) || method || (isShowId && id);
+
   return (
     <ReceiptBase
+      ref={ref}
       className={clsx("font-dung-geun-mo text-sm text-black", className)}
     >
       <div className="flex flex-col items-stretch justify-start gap-1">
         <span className="break-all">{receiptTitle}</span>
         <SeperatorDoubleDash />
-        <table>
-          <tbody>
-            {receiverName && <InfoRow title="수취자" info={receiverName} />}
-          </tbody>
-        </table>
-        <SeperatorSingleDash />
-        <table>
-          <tbody>
-            {remitterName && <InfoRow title="납부자" info={remitterName} />}
-            {isShowDate && <InfoRow title="납부일시" info={dateTime} />}
-            {method && <InfoRow title="납부방법" info={method} />}
-            {isShowId && <InfoRow title="승인번호" info={id} />}
-          </tbody>
-        </table>
-        <SeperatorSingleDash />
+        {isShowReceiverSection && (
+          <>
+            <table>
+              <tbody>
+                <InfoRow title="수취자" info={receiverName} />
+              </tbody>
+            </table>
+            <SeperatorSingleDash />
+          </>
+        )}
+        {isShowRemitterSection && (
+          <>
+            <table>
+              <tbody>
+                {remitterName && <InfoRow title="납부자" info={remitterName} />}
+                {isShowDate && dateTime && (
+                  <InfoRow title="납부일시" info={dateTime} />
+                )}
+                {method && <InfoRow title="납부방법" info={method} />}
+                {isShowId && id && <InfoRow title="승인번호" info={id} />}
+              </tbody>
+            </table>
+            <SeperatorSingleDash />
+          </>
+        )}
         <table>
           <thead className="border-b-[1px] border-dashed border-black text-left">
             <tr>
@@ -155,3 +174,8 @@ export const ReceiptVariantNormal = ({
     </ReceiptBase>
   );
 };
+
+export const ReceiptVariantNormal = forwardRef<
+  HTMLDivElement,
+  ReceiptVariantBaseProps
+>(_ReceiptVariantNormal);

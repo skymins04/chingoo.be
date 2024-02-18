@@ -1,6 +1,6 @@
 # CHINGOO.BE
 
-https://chingoo.be  
+https://chingoo.be (임시: https://chingobe.betaman.dev)
 가장 재밌게 친구비를 받는 방법
 
 토스아이디 익명 송금과 연동되는 나만의 친구비 링크와 친구비 영수증을 만들 수 있습니다!

@@ -1,18 +1,17 @@
-import { IconArrowLeft } from "@tabler/icons-react";
-import {
-  Button,
-  FloatingBottomArea,
-  Header,
-  IconButton,
-} from "@/common/components";
+import { Metadata } from "next";
 import Link from "next/link";
-import { CreateReceiptFormProvider } from "./form";
-import { FormControlledReceipt } from "./form-controlled-receipt";
-import { FormControlledReceiptSetting } from "./form-controlled-receipt-setting";
+import { IconArrowLeft } from "@tabler/icons-react";
+import { FloatingBottomArea, Header, IconButton } from "@/common/components";
+import { CreateReceipt } from "@/create-receipt";
 
-export default function CreatePage() {
+export const metadata: Metadata = {
+  title: "CHINGOO.BE - 친구비 링크 만들기",
+  description: "가장 재밌게 친구비를 받는 방법",
+};
+
+export default function CreateReceiptPage() {
   return (
-    <CreateReceiptFormProvider>
+    <CreateReceipt.Provider>
       <main className="flex flex-col items-stretch justify-start gap-6 bg-gray-900 px-6 pb-6 pt-8">
         <Header
           title="친구비 링크 만들기"
@@ -23,17 +22,12 @@ export default function CreatePage() {
           }
         />
 
-        <section className="h-[250px] w-full overflow-y-auto overflow-x-hidden rounded-2xl bg-gray-600 p-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-800">
-          <FormControlledReceipt className="mx-auto w-[220px]" />
-        </section>
-
-        <FormControlledReceiptSetting />
+        <CreateReceipt.Preview />
+        <CreateReceipt.Input />
       </main>
       <FloatingBottomArea>
-        <Button size="lg" className="w-full">
-          링크 복사
-        </Button>
+        <CreateReceipt.CopyLinkButton />
       </FloatingBottomArea>
-    </CreateReceiptFormProvider>
+    </CreateReceipt.Provider>
   );
 }

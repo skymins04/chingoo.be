@@ -1,5 +1,5 @@
 import { TablerIconsProps } from "@tabler/icons-react";
-import clsx from "clsx";
+import clsx from "clsx/lite";
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 export type IconButtonProps = {
@@ -15,7 +15,7 @@ export const IconButton = ({ icon, className, ...props }: IconButtonProps) => {
     <button
       {...props}
       className={clsx(
-        "group duration-200 hover:scale-[1.04] active:scale-100",
+        "group duration-200 hover:scale-[1.04] active:scale-100 disabled:cursor-not-allowed disabled:opacity-10 disabled:hover:scale-100",
         className,
       )}
     >

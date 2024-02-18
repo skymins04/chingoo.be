@@ -1,8 +1,8 @@
+import TossIDScreenImage from "@/common/assets/images/toss-id-1.png";
+
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-
-import TossIDScreenImage from "@/common/assets/images/toss-id-1.png";
 import {
   FloatingBottomArea,
   Header,
@@ -38,7 +38,7 @@ export default function MainPage() {
           <StrongText>토스아이디가 있어야해요.</StrongText>
         </p>
 
-        <section className="relative w-full origin-bottom animate-[fade\_in_0.4s_0.6s_ease-in-out_forwards] select-none pb-20 opacity-0">
+        <section className="relative w-full origin-bottom animate-[fade\_in_0.4s_0.6s_ease-in-out_forwards] pb-20 opacity-0">
           <div className="relative w-[80%]">
             <Image
               src={TossIDScreenImage.src}

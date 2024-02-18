@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {
+  ForwardRefExoticComponent,
+  ForwardedRef,
+  RefAttributes,
+  forwardRef,
+  useEffect,
+  useState,
+} from "react";
 import { ReceiptVariantBaseProps, ReceiptVariantNormal } from "./variants";
 
 type ReceiptVariant = "normal";
@@ -11,22 +18,29 @@ export type ReceiptProps = {
 
 const receiptVariants: Record<
   ReceiptVariant,
-  (props: ReceiptVariantBaseProps) => ReactNode
+  ForwardRefExoticComponent<
+    ReceiptVariantBaseProps & RefAttributes<HTMLDivElement>
+  >
 > = {
   normal: ReceiptVariantNormal,
 };
 
-export const Receipt = ({ variant = "normal", ...props }: ReceiptProps) => {
+const _Receipt = (
+  { variant = "normal", ...props }: ReceiptProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) => {
   const [data, setData] = useState<{ id?: number; dateTime?: string }>({});
 
   const Variant = receiptVariants[variant];
 
-  useEffect(() => {
+  useEffect(function initReceipt() {
     setData({
       id: Math.floor(Math.random() * (100000000 - 1) + 1),
       dateTime: `${new Date().toLocaleDateString("ko-KR")} ${new Date().toLocaleTimeString("ko-KR")}`,
     });
   }, []);
 
-  return <Variant {...props} {...data} />;
+  return <Variant {...props} {...data} ref={ref} />;
 };
+
+export const Receipt = forwardRef<HTMLDivElement, ReceiptProps>(_Receipt);
