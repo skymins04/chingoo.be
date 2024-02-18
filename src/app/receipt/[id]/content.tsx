@@ -110,7 +110,7 @@ export const ViewReceiptPageContent = ({
         >
           {isLoading
             ? "영수증 이미지 저장 중..."
-            : `${totalPrice.toLocaleString("ko-KR")} 친구비 보내기`}
+            : `${totalPrice.toLocaleString("ko-KR")}월 친구비 보내기`}
         </Button>
       </FloatingBottomArea>
     </>

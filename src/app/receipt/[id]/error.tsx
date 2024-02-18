@@ -1,11 +1,35 @@
 "use client";
 
-import { getMetaData } from "@/common/assets/metadata";
+import { Metadata } from "next";
 
-export const metadata = getMetaData(
-  "CHINGOO.BE",
-  "가장 재밌게 친구비를 받는 방법",
-);
+export const metadata: Metadata = {
+  title: "CHINGOO.BE",
+  description: "가장 재밌게 친구비를 받는 방법",
+  openGraph: {
+    title: "CHINGOO.BE",
+    description: "가장 재밌게 친구비를 받는 방법",
+    images: [
+      {
+        url: "https://chingoo.be/opengraph-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "ko_KR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CHINGOO.BE",
+    description: "가장 재밌게 친구비를 받는 방법",
+    images: [
+      {
+        url: "https://chingoo.be/opengraph-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+};
 
 export default function ViewReceiptErrorPage() {
   return (
