@@ -47,12 +47,16 @@ export const ReceiptItemList = () => {
       isRequired
       label="친구비 품목"
       labelRightArea={
-        <Button size="xs" onClick={handleAddItem}>
+        <Button size="sm" onClick={handleAddItem}>
           + 품목추가
         </Button>
       }
     >
       <div className="grid grid-cols-[5fr_2fr_2.5fr_0.5fr] gap-2">
+        <label className="pl-1 text-sm">품목명</label>
+        <label className="pl-1 text-sm">수량</label>
+        <label className="pl-1 text-sm">단가</label>
+        <span></span>
         {fields.map((field, idx) => (
           <Fragment key={field.id}>
             <Controller

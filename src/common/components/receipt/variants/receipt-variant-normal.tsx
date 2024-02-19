@@ -153,7 +153,7 @@ const _ReceiptVariantNormal = (
               <th className="whitespace-nowrap p-0 pb-1 font-normal">품목</th>
               <th className="whitespace-nowrap p-0 pb-1 font-normal">수량</th>
               <th className="whitespace-nowrap p-0 pb-1 text-right font-normal">
-                금액
+                단가
               </th>
             </tr>
           </thead>
