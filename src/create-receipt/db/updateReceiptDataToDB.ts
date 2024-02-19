@@ -17,8 +17,6 @@ export const updateReceiptDataToDB = async (
     priceRows,
   }: CreateReciptForm,
 ) => {
-  const existRow = await prisma.receipt.findUnique({ where: { id } });
-
   const data = {
     toss_id: tossId,
     title,
@@ -32,14 +30,5 @@ export const updateReceiptDataToDB = async (
     price_rows: priceRows,
   };
 
-  if (existRow) {
-    await prisma.receipt.update({ where: { id }, data });
-  } else {
-    await prisma.receipt.create({
-      data: {
-        id,
-        ...data,
-      },
-    });
-  }
+  await prisma.receipt.update({ where: { id }, data });
 };
