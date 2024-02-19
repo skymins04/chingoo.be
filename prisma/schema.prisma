@@ -12,7 +12,7 @@ datasource db {
 }
 
 model receipt {
-  id             String    @id
+  id             String    @id @default(uuid())
   toss_id        String    @map("tossId")
   title          String
   receiver_name  String?   @map("receiverName")

@@ -1,19 +1,16 @@
 "use client";
 
-import { Button } from "@/common/components";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { copyText } from "@/common/utils";
+import { Button } from "@/common/components";
 import { useCreateReceiptFormContext } from "./form";
-import { useState } from "react";
 
-export type CreateReceiptCopyLinkButtonProps = {
-  receiptId: string;
-};
-
-export const CreateReceiptCopyLinkButton = ({
-  receiptId,
-}: CreateReceiptCopyLinkButtonProps) => {
+export const CreateReceiptCopyLinkButton = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [existReceiptId, setExistReceiptId] = useState<string | undefined>(
+    undefined,
+  );
 
   const {
     getValues,
@@ -28,11 +25,17 @@ export const CreateReceiptCopyLinkButton = ({
       .promise(
         fetch("/create/save", {
           method: "POST",
-          body: JSON.stringify({ id: receiptId, receiptData: getValues() }),
-        }).then(() => {
-          const url = `${window.location.origin}/receipt/${receiptId}`;
-          copyText(url);
-        }),
+          body: JSON.stringify({
+            id: existReceiptId,
+            receiptData: getValues(),
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            const url = `${window.location.origin}/receipt/${res.id}`;
+            setExistReceiptId(res.id);
+            copyText(url);
+          }),
         {
           loading: "영수증을 저장하는 중...",
           success: "클립보드에 링크가 복사됐습니다!",

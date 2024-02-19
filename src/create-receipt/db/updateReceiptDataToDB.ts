@@ -2,7 +2,7 @@ import "server-only";
 import { prisma } from "@/common/db";
 import { CreateReciptForm } from "../form";
 
-export const saveReceiptDataToDB = async (
+export const updateReceiptDataToDB = async (
   id: string,
   {
     tossId,
