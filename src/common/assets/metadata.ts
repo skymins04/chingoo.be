@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { HOST } from "../env";
 
-export const getMetaData = (title: string, description: string) =>
+export const getMetaData = (title: string, description: string, url: string) =>
   ({
     title,
     description,
@@ -21,7 +21,6 @@ export const getMetaData = (title: string, description: string) =>
       "납부자",
       "수취자",
       "후원",
-      "",
     ],
     openGraph: {
       title,
@@ -34,6 +33,7 @@ export const getMetaData = (title: string, description: string) =>
         },
       ],
       locale: "ko_KR",
+      url,
     },
     twitter: {
       card: "summary_large_image",

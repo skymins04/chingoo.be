@@ -10,10 +10,12 @@ import {
   Button,
   ReceiptVariantNormal,
 } from "@/common/components";
+import { HOST } from "@/common/env";
 
 export const metadata = getMetaData(
   "CHINGOO.BE",
   "가장 재밌게 친구비를 받는 방법",
+  HOST,
 );
 
 export default function MainPage() {
