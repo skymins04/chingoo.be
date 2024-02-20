@@ -1,27 +1,30 @@
-import { z } from "zod";
+import * as s from "superstruct";
+import { message } from "@/common/utils/superstruct";
 
-export const receiptValidationSchema = z.object({
-  tossId: z
-    .string({ required_error: "토스아이디를 입력해주세요." })
-    .min(1, "토스아이디를 입력해주세요."),
-  title: z
-    .string({
-      invalid_type_error: "올바른 영수증 제목을 입력해주세요.",
-      required_error: "영수증 제목을 입력해주세요.",
-    })
-    .min(1, "영수증 제목을 입력해주세요."),
-  receiverName: z.string().min(1, "이름을 입력해주세요."),
-  remitterName: z.string().optional(),
-  remitterTitle: z.string().optional(),
-  method: z.string().optional(),
-  footerMessage: z.string().optional(),
-  isShowDate: z.boolean().optional(),
-  isShowId: z.boolean().optional(),
-  priceRows: z
-    .object({
-      name: z.string().min(1, { message: "품목명을 입력해주세요." }),
-      count: z.number().min(0, { message: "0 이상으로 입력해주세요." }),
-      price: z.number().min(0, { message: "0 이상으로 입력해주세요." }),
-    })
-    .array(),
+export const receiptValidationSchema = s.object({
+  tossId: message(
+    s.size(s.string(), 1, Infinity),
+    "토스아이디를 입력해주세요.",
+  ),
+  title: message(
+    s.size(s.string(), 1, Infinity),
+    "영수증 제목을 입력해주세요.",
+  ),
+  receiverName: message(
+    s.size(s.string(), 1, Infinity),
+    "이름을 입력해주세요.",
+  ),
+  remitterName: s.optional(s.string()),
+  remitterTitle: s.optional(s.string()),
+  method: s.optional(s.string()),
+  footerMessage: s.optional(s.string()),
+  isShowDate: s.optional(s.boolean()),
+  isShowId: s.optional(s.boolean()),
+  priceRows: s.array(
+    s.object({
+      name: message(s.size(s.string(), 1, Infinity), "품목명을 입력해주세요."),
+      count: message(s.min(s.number(), 0), "0 이상으로 입력해주세요."),
+      price: message(s.min(s.number(), 0), "0 이상으로 입력해주세요."),
+    }),
+  ),
 });

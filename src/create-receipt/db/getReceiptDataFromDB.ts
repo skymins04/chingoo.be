@@ -1,6 +1,5 @@
 import "server-only";
 import { CreateReciptForm } from "../form";
-import { receiptValidationSchema } from "..";
 import { prisma } from "@/common/db";
 
 export const getReceiptDataFromDB = async (
@@ -25,7 +24,7 @@ export const getReceiptDataFromDB = async (
 
   return {
     id,
-    receiptData: receiptValidationSchema.parse({
+    receiptData: {
       tossId: toss_id,
       title,
       receiverName: receiver_name || undefined,
@@ -36,6 +35,6 @@ export const getReceiptDataFromDB = async (
       isShowDate: !!is_show_date,
       isShowId: !!is_show_id,
       priceRows: price_rows as any,
-    }),
+    },
   };
 };

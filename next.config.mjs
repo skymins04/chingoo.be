@@ -11,7 +11,7 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   experimental: {
-    optimizePackageImports: ["@/common/components", "zod"],
+    optimizePackageImports: ["@/common/components", "superstruct"],
   },
   webpack(config) {
     config.module.rules.push({

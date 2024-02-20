@@ -1,9 +1,9 @@
 "use client";
 
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { ReceiptProps } from "@/common/components";
 import { receiptValidationSchema } from "./form-schema";
+import { superstructResolver } from "@hookform/resolvers/superstruct";
 
 export type CreateReciptForm = { tossId: string } & Omit<
   ReceiptProps,
@@ -13,7 +13,7 @@ export type CreateReciptForm = { tossId: string } & Omit<
 export const useCreateReceiptForm = () =>
   useForm<CreateReciptForm>({
     mode: "all",
-    resolver: zodResolver(receiptValidationSchema),
+    resolver: superstructResolver(receiptValidationSchema),
     defaultValues: {
       title: "친구비 영수증",
       receiverName: "",

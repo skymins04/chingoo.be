@@ -1,7 +1,13 @@
-import * as z from "zod";
+import * as s from "superstruct";
 
-const schema = z.object({
-  HOST: z.string(),
+const schema = s.object({
+  HOST: s.string(),
 });
 
-export const { HOST } = schema.parse(process.env);
+const [isInvalid, values] = s.validate({ HOST: process.env.HOST }, schema);
+
+if (isInvalid) {
+  throw new Error("invalid host env.");
+}
+
+export const { HOST } = values;

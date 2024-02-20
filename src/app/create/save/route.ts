@@ -1,9 +1,10 @@
+import { NextResponse } from "next/server";
+import { validate } from "superstruct";
 import {
   receiptValidationSchema,
   createReceiptDataToDB,
   updateReceiptDataToDB,
 } from "@/create-receipt";
-import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {
   const body = await req.json();
@@ -11,13 +12,19 @@ export const POST = async (req: Request) => {
     if (!body.receiptData) {
       throw new Error("invalid parameters.");
     }
-    const parsedBody = receiptValidationSchema.parse(body.receiptData);
+    const [isInvalid, values] = validate(
+      body.receiptData,
+      receiptValidationSchema,
+    );
+    if (isInvalid) {
+      throw new Error("invalid parameters.");
+    }
 
     if (body.id) {
-      await updateReceiptDataToDB(body.id, parsedBody);
+      await updateReceiptDataToDB(body.id, values);
       return NextResponse.json({ success: true, id: body.id });
     } else {
-      const id = await createReceiptDataToDB(parsedBody);
+      const id = await createReceiptDataToDB(values);
       return NextResponse.json({ success: true, id });
     }
   } catch (e) {

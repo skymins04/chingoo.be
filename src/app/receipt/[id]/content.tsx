@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { z } from "zod";
+import Link from "next/link";
+import * as s from "superstruct";
 import { Controller, useForm } from "react-hook-form";
+import { superstructResolver } from "@hookform/resolvers/superstruct";
 import { toPng } from "html-to-image";
+import { message } from "@/common/utils/superstruct";
 import {
   Button,
   FloatingBottomArea,
@@ -12,9 +15,7 @@ import {
   Receipt,
 } from "@/common/components";
 import toast from "react-hot-toast";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateReciptForm } from "@/create-receipt/form";
-import Link from "next/link";
 
 export const ViewReceiptPageContent = ({
   receiptData,
@@ -32,9 +33,12 @@ export const ViewReceiptPageContent = ({
     formState: { isValid },
   } = useForm<{ remitterName: string }>({
     mode: "all",
-    resolver: zodResolver(
-      z.object({
-        remitterName: z.string().min(1, "이름을 입력해주세요."),
+    resolver: superstructResolver(
+      s.object({
+        remitterName: message(
+          s.size(s.string(), 1, Infinity),
+          "이름을 입력해주세요.",
+        ),
       }),
     ),
     defaultValues: {

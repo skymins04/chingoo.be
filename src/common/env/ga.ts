@@ -1,7 +1,16 @@
-import * as z from "zod";
+import * as s from "superstruct";
 
-const schema = z.object({
-  GOOGLE_ANALYTICS_ID: z.string(),
+const schema = s.object({
+  GOOGLE_ANALYTICS_ID: s.string(),
 });
 
-export const { GOOGLE_ANALYTICS_ID } = schema.parse(process.env);
+const [isInvalid, values] = s.validate(
+  { GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID },
+  schema,
+);
+
+if (isInvalid) {
+  throw new Error("invalid ga env.");
+}
+
+export const { GOOGLE_ANALYTICS_ID } = values;

@@ -34,8 +34,8 @@
     "react-hook-form": "^7.50.1",
     "react-hot-toast": "^2.4.1",
     "server-only": "^0.0.1",
-    "uuid": "^9.0.1",
-    "zod": "^3.22.4"
+    "superstruct": "^1.0.3",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.1.0",
