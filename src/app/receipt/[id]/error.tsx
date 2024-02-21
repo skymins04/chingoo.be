@@ -3,10 +3,10 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "CHINGOO.BE",
+  title: "친구비 CHINGOO.BE",
   description: "가장 재밌게 친구비를 받는 방법",
   openGraph: {
-    title: "CHINGOO.BE",
+    title: "친구비 CHINGOO.BE",
     description: "가장 재밌게 친구비를 받는 방법",
     images: [
       {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CHINGOO.BE",
+    title: "친구비 CHINGOO.BE",
     description: "가장 재밌게 친구비를 받는 방법",
     images: [
       {

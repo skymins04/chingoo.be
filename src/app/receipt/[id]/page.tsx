@@ -19,7 +19,7 @@ export async function generateMetadata({
     .map(({ count, price }) => count * price)
     .reduce((prev, next) => prev + next)
     .toLocaleString("ko-KR");
-  const title = `CHINGOO.BE - ${receiverName}님에게 친구비 ${totalPrice}원 보내기`;
+  const title = `친구비 CHINGOO.BE - ${receiverName}님에게 친구비 ${totalPrice}원 보내기`;
   const description = "가장 재밌게 친구비를 받는 방법";
   const url = `${HOST}/receipt/${id}`;
   return getMetaData(title, description, url);
