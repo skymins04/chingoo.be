@@ -23,6 +23,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@next/third-parties": "^14.1.0",
     "@prisma/client": "^5.9.1",
+    "@sentry/nextjs": "^7.102.0",
     "@tabler/icons-react": "^2.47.0",
     "@vercel/postgres": "^0.7.2",
     "clsx": "^2.1.0",
