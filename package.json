@@ -15,6 +15,7 @@
     "db:pull": "dotenv -e .env.local -- pnpx prisma db pull",
     "db:schema:gen": "prisma generate",
     "db:schema:format": "prisma-case-format --file ./prisma/schema.prisma --table-case snake --field-case snake --map-table-case pascal --map-field-case camel",
+    "db:push": "dotenv -e .env.local -- pnpx prisma db push",
     "db:migrate:gen": "dotenv -e .env.local -- pnpx prisma migrate dev",
     "db:migrate:deploy": "dotenv -e .env.local -- pnpx prisma migrate deploy"
   },

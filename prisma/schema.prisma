@@ -6,9 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model receipt {
@@ -22,7 +22,7 @@ model receipt {
   footer_message String?   @map("footerMessage")
   is_show_date   Boolean?  @map("isShowDate")
   is_show_id     Boolean?  @map("isShowId")
-  price_rows     Json[]    @map("priceRows")
+  price_rows     Json      @map("priceRows")
   created_at     DateTime  @default(now()) @map("createdAt")
   updated_at     DateTime  @default(now()) @map("updatedAt")
   deleted_at     DateTime? @map("deletedAt")
