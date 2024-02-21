@@ -24,14 +24,14 @@
 
 # Tech stack
 
-| 유형       | 적용 기술                                |
-| ---------- | ---------------------------------------- |
-| Framework  | Next.js 14.1.0 (App router)              |
-| Styling    | Tailwind CSS                             |
-| DB         | PostgreSQL(Vercel Serverless PostgreSQL) |
-| ORM        | Prisma                                   |
-| Infra      | Vercel SaaS                              |
-| Validation | Superstruct                              |
-| Form       | react-hook-form                          |
-| Analyzer   | Google Analytics, next-bundle-analyzer   |
-| Etc        | Storybook, SVGR, Prettier, ESLint        |
+| 유형       | 적용 기술                              |
+| ---------- | -------------------------------------- |
+| Framework  | Next.js 14.1.0 (App router)            |
+| Styling    | Tailwind CSS                           |
+| DB         | MySQL(PlanetScale)                     |
+| ORM        | Prisma                                 |
+| Infra      | Vercel SaaS                            |
+| Validation | Superstruct                            |
+| Form       | react-hook-form                        |
+| Analyzer   | Google Analytics, next-bundle-analyzer |
+| Etc        | Storybook, SVGR, Prettier, ESLint      |
