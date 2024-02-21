@@ -29,6 +29,7 @@ export const ReceiptItemList = () => {
     name: "priceRows",
   });
 
+  const isAddablePriceRow = fields.length < 10;
   const isRemovablePriceRows = fields.length > 1;
 
   const handleRemoveItem = (idx: number) => () => {
@@ -37,9 +38,14 @@ export const ReceiptItemList = () => {
     }
   };
   const handleAddItem = () => {
-    const randomIdx = getRandomInt(0, CREATE_RECEIPT_EXAMPLE_ITEMS.length - 1);
-    const randomItem = CREATE_RECEIPT_EXAMPLE_ITEMS[randomIdx];
-    prepend(randomItem);
+    if (isAddablePriceRow) {
+      const randomIdx = getRandomInt(
+        0,
+        CREATE_RECEIPT_EXAMPLE_ITEMS.length - 1,
+      );
+      const randomItem = CREATE_RECEIPT_EXAMPLE_ITEMS[randomIdx];
+      prepend(randomItem);
+    }
   };
 
   return (
@@ -47,7 +53,7 @@ export const ReceiptItemList = () => {
       isRequired
       label="친구비 품목"
       labelRightArea={
-        <Button size="sm" onClick={handleAddItem}>
+        <Button size="sm" onClick={handleAddItem} disabled={!isAddablePriceRow}>
           + 품목추가
         </Button>
       }
