@@ -24,8 +24,12 @@
 
 # Tech stack
 
+별도의 Backend 서비스 없이, Next.js를 통해 Frontend와 Backend를 함께 처리합니다.
+
 | 유형                  | 적용 기술                                      |
 | --------------------- | ---------------------------------------------- |
+| Node                  | v20.9.0                                        |
+| Package Manager       | PNPM 8.14.0                                    |
 | Framework             | Next.js 14.1.0 (App router)                    |
 | Styling               | Tailwind CSS                                   |
 | DB                    | MySQL(PlanetScale)                             |
